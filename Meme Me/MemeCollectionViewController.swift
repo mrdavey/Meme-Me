@@ -41,12 +41,13 @@ class MemeCollectionViewController: UICollectionViewController, UICollectionView
     }
 
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let detailVC = self.storyboard?.instantiateViewControllerWithIdentifier("MemeEditorView")! as! MemeEditorViewController
+        //let detailVC = self.storyboard?.instantiateViewControllerWithIdentifier("MemeEditorView")! as! MemeEditorViewController
+
+        let detailVC = self.storyboard?.instantiateViewControllerWithIdentifier("DetailView")! as! MemeDetailViewController
 
         detailVC.meme = self.memes[indexPath.row]
-        
-        self.navigationController!.popViewControllerAnimated(true)
-        self.navigationController!.pushViewController(detailVC, animated: false)
+
+        self.navigationController?.pushViewController(detailVC, animated: true)
     }
 
 }

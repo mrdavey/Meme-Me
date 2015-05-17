@@ -15,3 +15,8 @@ struct Meme {
     var memedImage:UIImage
 }
 
+// Testing equitible func to be able to delete meme.. didn't fix error
+func == (lhs: Meme, rhs: Meme) -> Bool {
+    return lhs.topText == rhs.topText
+    //&& lhs.bottomText == rhs.bottomText && lhs.originalImage == rhs.originalImage
+}

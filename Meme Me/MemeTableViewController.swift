@@ -12,10 +12,6 @@ class MemeTableViewController: UITableViewController, UITableViewDelegate, UITab
 
     var allMemes = (UIApplication.sharedApplication().delegate as! AppDelegate).memes
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
     // Fix for buggy nav bar overlapping tableview: http://stackoverflow.com/a/28879100/4769084
     override func viewDidLayoutSubviews() {
         if let var rect = self.navigationController?.navigationBar.frame {
@@ -41,12 +37,11 @@ class MemeTableViewController: UITableViewController, UITableViewDelegate, UITab
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let detailVC = self.storyboard?.instantiateViewControllerWithIdentifier("MemeEditorView")! as! MemeEditorViewController
+        let detailVC = self.storyboard?.instantiateViewControllerWithIdentifier("DetailView")! as! MemeDetailViewController
 
         detailVC.meme = self.allMemes[indexPath.row]
 
-        self.navigationController!.popViewControllerAnimated(true)
-        self.navigationController!.pushViewController(detailVC, animated: false)
+        self.navigationController!.pushViewController(detailVC, animated: true)
     }
 
 }

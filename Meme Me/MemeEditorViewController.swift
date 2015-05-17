@@ -19,7 +19,7 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate, UIImagePi
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
 
     var memedImage: UIImage?
-    var meme: Meme?
+    var memeRestore: Meme?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +38,7 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate, UIImagePi
         topTextField.textAlignment = NSTextAlignment.Center
         bottomTextField.text = "BOTTOM"
         bottomTextField.textAlignment = NSTextAlignment.Center
-
+    
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -54,14 +54,13 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate, UIImagePi
             self.shareButton.enabled = true
         }
 
-        // Return the same image for editing
-        if let meme = meme {
+        if let meme = memeRestore {
             self.topTextField.text = meme.topText
             self.bottomTextField.text = meme.bottomText
             self.imageView?.image = meme.originalImage
 
             self.shareButton.enabled = true
-            self.meme = nil
+            self.memeRestore = nil
         }
     }
 
@@ -71,21 +70,7 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate, UIImagePi
     }
 
     @IBAction func YourMemeCollectionButton(sender: UIBarButtonItem) {
-        if let image = self.imageView?.image {
-            var alert = UIAlertController(title: "Save?", message: "Would you like to save the current meme", preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title: "Save", style: .Default, handler: { action in
-                // Save current image in view
-                self.memedImage = self.generateMemedImage()
-                self.save()
-                self.performSegueWithIdentifier("showSavedMemes", sender: sender)
-            }))
-            alert.addAction(UIAlertAction(title: "No", style: .Destructive, handler: { action in
-                self.performSegueWithIdentifier("showSavedMemes", sender: sender)
-            }))
-            self.presentViewController(alert, animated: true, completion: nil)
-        } else {
-            self.performSegueWithIdentifier("showSavedMemes", sender: sender)
-        }
+        self.performSegueWithIdentifier("showSavedMemes", sender: sender)
     }
 
     // --------------------
@@ -97,9 +82,21 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate, UIImagePi
         let memeMessage = "Look at this great meme!"
 
         let activityVC = UIActivityViewController(activityItems: [memeMessage, memedImage!], applicationActivities: nil)
-        self.presentViewController(activityVC, animated: true) {
-            self.save()
+
+        activityVC.completionWithItemsHandler = { activity, success, items, error in
+            var alert = UIAlertController(title: "Save?", message: "Would you like to save the current meme", preferredStyle: .Alert)
+
+            alert.addAction(UIAlertAction(title: "Save", style: .Default, handler: { action in
+                self.memedImage = self.generateMemedImage()
+                self.save()
+            }))
+
+            alert.addAction(UIAlertAction(title: "No", style: .Destructive, handler: nil))
+
+            self.presentViewController(alert, animated: true, completion: nil)
         }
+
+        self.presentViewController(activityVC, animated: true, completion: nil)
 
     }
 
@@ -116,6 +113,7 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate, UIImagePi
 
         // Hide toolbar and navbar
         self.navigationController?.setNavigationBarHidden(true, animated: false)
+        UIApplication.sharedApplication().statusBarHidden = true
         self.toolBar.hidden = true
         self.bottomConstraint.constant = 10
 
@@ -127,11 +125,14 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate, UIImagePi
 
         // Show toolbar and navbar
         self.navigationController?.setNavigationBarHidden(false, animated: false)
+        UIApplication.sharedApplication().statusBarHidden = false
         self.bottomConstraint.constant = 44
         self.toolBar.hidden = false
 
         return memedImage
     }
+
+
 
     // --------------------
     // MARK: - TextField functions

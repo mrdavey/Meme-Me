@@ -18,25 +18,12 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GfF-Q0-lpw">
-                                <rect key="frame" x="0.0" y="64" width="600" height="528"/>
+                                <rect key="frame" x="0.0" y="48" width="600" height="568"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aWA-0F-JFw">
                                 <rect key="frame" x="0.0" y="64" width="600" height="17"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="57" id="0Ep-yo-U7w"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="0Ep-yo-U7w"/>
-                                    </mask>
-                                </variation>
-                                <variation key="widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="0Ep-yo-U7w"/>
-                                    </mask>
-                                </variation>
                                 <connections>
                                     <outlet property="delegate" destination="rFN-jE-J2p" id="NgX-Oz-UE1"/>
                                 </connections>
@@ -75,14 +62,13 @@
                             <constraint firstAttribute="trailingMargin" secondItem="R1l-ql-jCf" secondAttribute="trailing" constant="-16" id="JMe-kl-zf4"/>
                             <constraint firstAttribute="trailingMargin" secondItem="KQH-8p-vcb" secondAttribute="trailing" constant="-16" id="Lde-j8-VbJ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="aWA-0F-JFw" secondAttribute="trailing" constant="-16" id="Oj6-NR-dEP"/>
-                            <constraint firstItem="Ip0-xA-qid" firstAttribute="top" secondItem="GfF-Q0-lpw" secondAttribute="bottom" constant="8" symbolic="YES" id="Soh-Gb-QED"/>
+                            <constraint firstItem="Ip0-xA-qid" firstAttribute="top" secondItem="GfF-Q0-lpw" secondAttribute="bottom" constant="-16" id="Soh-Gb-QED"/>
                             <constraint firstItem="Ip0-xA-qid" firstAttribute="top" secondItem="R1l-ql-jCf" secondAttribute="bottom" id="XMB-s7-ciI"/>
                             <constraint firstItem="GfF-Q0-lpw" firstAttribute="leading" secondItem="VzI-pf-Ek7" secondAttribute="leadingMargin" constant="-16" id="dHC-9M-dhh"/>
                             <constraint firstItem="KQH-8p-vcb" firstAttribute="leading" secondItem="VzI-pf-Ek7" secondAttribute="leadingMargin" constant="-16" id="eUA-Bc-fu4"/>
-                            <constraint firstItem="aWA-0F-JFw" firstAttribute="top" secondItem="FUP-Qz-Br2" secondAttribute="bottom" id="fDr-GM-BqN"/>
                             <constraint firstItem="R1l-ql-jCf" firstAttribute="leading" secondItem="VzI-pf-Ek7" secondAttribute="leadingMargin" constant="-16" id="fTW-w3-aZN"/>
                             <constraint firstItem="Ip0-xA-qid" firstAttribute="top" secondItem="KQH-8p-vcb" secondAttribute="bottom" constant="44" id="fXp-xe-N1P"/>
-                            <constraint firstItem="GfF-Q0-lpw" firstAttribute="top" secondItem="FUP-Qz-Br2" secondAttribute="bottom" id="fsd-vY-1dQ"/>
+                            <constraint firstItem="GfF-Q0-lpw" firstAttribute="top" secondItem="FUP-Qz-Br2" secondAttribute="top" constant="-16" id="fsd-vY-1dQ"/>
                             <constraint firstItem="aWA-0F-JFw" firstAttribute="leading" secondItem="VzI-pf-Ek7" secondAttribute="leadingMargin" constant="-16" id="rLw-AQ-8Do"/>
                             <constraint firstItem="Ip0-xA-qid" firstAttribute="top" secondItem="R1l-ql-jCf" secondAttribute="bottom" symbolic="YES" id="xKn-lW-nsn"/>
                             <constraint firstAttribute="trailingMargin" secondItem="GfF-Q0-lpw" secondAttribute="trailing" constant="-16" id="zBb-Hn-uj7"/>
@@ -190,11 +176,45 @@
                             <outlet property="delegate" destination="1FA-vS-Do3" id="tHX-lA-sdR"/>
                         </connections>
                     </collectionView>
-                    <tabBarItem key="tabBarItem" title="Gallery" id="Jsm-SG-AFi"/>
+                    <tabBarItem key="tabBarItem" title="Gallery" image="collection" id="Jsm-SG-AFi"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gio-VM-FJQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3241" y="71"/>
+        </scene>
+        <!--Meme Detail View Controller-->
+        <scene sceneID="kfA-OZ-Mfi">
+            <objects>
+                <viewController storyboardIdentifier="DetailView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="LCn-c6-y7f" customClass="MemeDetailViewController" customModule="Meme_Me" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EoZ-nS-CM6"/>
+                        <viewControllerLayoutGuide type="bottom" id="obh-U7-6uq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="sHK-wJ-WlE">
+                        <rect key="frame" x="0.0" y="64" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wHJ-5M-QxM">
+                                <rect key="frame" x="0.0" y="28" width="600" height="564"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wHJ-5M-QxM" firstAttribute="leading" secondItem="sHK-wJ-WlE" secondAttribute="leadingMargin" constant="-16" id="Fvp-ce-7us"/>
+                            <constraint firstItem="wHJ-5M-QxM" firstAttribute="top" secondItem="EoZ-nS-CM6" secondAttribute="bottom" constant="8" symbolic="YES" id="P9p-ET-eN8"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="wHJ-5M-QxM" secondAttribute="trailing" constant="-16" id="PKH-8N-vFy"/>
+                            <constraint firstItem="obh-U7-6uq" firstAttribute="top" secondItem="wHJ-5M-QxM" secondAttribute="bottom" constant="8" symbolic="YES" id="khf-x5-WxE"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <connections>
+                        <outlet property="imageView" destination="wHJ-5M-QxM" id="GvQ-VC-lZx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eBw-A0-gF7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4008" y="469"/>
         </scene>
         <!--MemeTableView-->
         <scene sceneID="vZQ-Ht-9Aj">
@@ -257,7 +277,7 @@
                         </connections>
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <tabBarItem key="tabBarItem" title="List" id="kUB-la-FY9"/>
+                    <tabBarItem key="tabBarItem" title="List" image="table" id="kUB-la-FY9"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nru-OH-Edn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -285,4 +305,8 @@
             <point key="canvasLocation" x="1071" y="429"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="collection" width="30" height="30"/>
+        <image name="table" width="30" height="30"/>
+    </resources>
 </document>

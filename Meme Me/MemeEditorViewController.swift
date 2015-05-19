@@ -89,6 +89,7 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate, UIImagePi
             alert.addAction(UIAlertAction(title: "Save", style: .Default, handler: { action in
                 self.memedImage = self.generateMemedImage()
                 self.save()
+                self.YourMemeCollectionButton(sender)
             }))
 
             alert.addAction(UIAlertAction(title: "No", style: .Destructive, handler: nil))

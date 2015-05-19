@@ -13,6 +13,7 @@ class MemeDetailViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
 
     var meme: Meme!
+    var index: Int!
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -44,7 +45,7 @@ class MemeDetailViewController: UIViewController {
     }
 
     func deleteMeme(sender:UIButton!) {
-        // Couldn't work out how to delete a meme
-        // Kept getting error: "Cannot invoke 'find' with an argument list of type '([Meme]), Meme!)
+        (UIApplication.sharedApplication().delegate as! AppDelegate).memes.removeAtIndex(index)
+        self.navigationController!.popViewControllerAnimated(true)
     }
 }

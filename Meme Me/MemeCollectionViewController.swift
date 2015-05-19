@@ -21,6 +21,9 @@ class MemeCollectionViewController: UICollectionViewController, UICollectionView
         super.viewWillAppear(animated)
 
         memes = (UIApplication.sharedApplication().delegate as! AppDelegate).memes
+
+        // Reload data when meme is deleted
+        self.collectionView?.reloadData()
     }
 
     // MARK: UICollectionViewDataSource
@@ -46,6 +49,7 @@ class MemeCollectionViewController: UICollectionViewController, UICollectionView
         let detailVC = self.storyboard?.instantiateViewControllerWithIdentifier("DetailView")! as! MemeDetailViewController
 
         detailVC.meme = self.memes[indexPath.row]
+        detailVC.index = indexPath.row
 
         self.navigationController?.pushViewController(detailVC, animated: true)
     }
